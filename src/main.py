@@ -1,0 +1,12 @@
+from fastapi import FastAPI, APIRouter
+from src.database import Base, engine
+from src.routes import auth,leaves
+from src import models
+
+app=FastAPI()
+
+models.Base.metadata.create_all(bind=engine)
+
+app.include_router(auth.router,prefix="/auth")
+app.include_router(leaves.router, prefix="/leaves")
+
