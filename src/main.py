@@ -5,7 +5,7 @@ from src import models
 
 app=FastAPI()
 
-@app.on_event("startup")
+@app.on_event("startup")  # Connecting db before import
 def on_startup():
   models.Base.metadata.create_all(bind=engine)
 
