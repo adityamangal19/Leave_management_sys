@@ -5,7 +5,9 @@ from src import models
 
 app=FastAPI()
 
-models.Base.metadata.create_all(bind=engine)
+@app.on_event("startup")
+def on_startup():
+  models.Base.metadata.create_all(bind=engine)
 
 app.include_router(auth.router,prefix="/auth")
 app.include_router(leaves.router, prefix="/leaves")
