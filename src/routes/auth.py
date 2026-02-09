@@ -28,6 +28,7 @@ def user_register(user:Register,db: Session=Depends(get_db)):
 
     db.add(new_user)
     db.commit()
+    print("Hello")
 
     return {"msg":"New User Registered Successfully"}
 
